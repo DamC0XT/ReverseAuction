@@ -1,0 +1,32 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+ <meta charset="utf-8">
+  </head>
+  
+  <body>
+  
+  <table>
+  	<tr>
+  	<th th:text="#{jobs.job}"></th>
+  	</tr>
+  
+  
+  	<tr th:each="job1 : ${job}">
+		<td th:text="${job1.JobId}">ID</td>
+		<td th:text="${job1.JobName}">JobName</td>
+		<td th:text="${job1.JobUser}">Created By</td>
+		<td th:text="${job1.JobDescription}">JobDescription</td>
+		<td th:text="${job1.JobCategory}">JobCategory</td>
+		<td th:text="${job1.Createdatetime}">Date Created</td>
+</tr>
+  
+  
+  </table>
+  
+  
+  
+  </body>
+</html>

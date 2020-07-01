@@ -1,0 +1,142 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+
+<head>
+  <meta charset="utf-8">
+
+  <title>OddJobs.ie</title>
+  <meta name="description" content="OddJobs">
+  
+
+ <link rel="stylesheet" href="/css/styles.css" type="text/css" />
+ 
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+ <script type="text/javascript">
+ 	$(document).ready(function(){
+ 		
+ 		$("#locales").change(function(){
+ 			
+ 			var selectOption = $("#locales").val();
+ 			
+ 			if(selectOption != ''){
+ 				
+ 				window.location.replace('/?lang=' + selectOption);
+ 				
+ 			}
+ 		});
+ 	});
+ 
+ 
+ </script>
+
+</head>
+
+<body>
+
+<div class = "container">
+	<div class="header">
+  		<h1><span th:text="#{index.welcome}">Welcome</span></h1>
+  		
+	</div>
+<div class = "nav">
+
+<span><a th:href="@{/}" th:text="#{home.h}">Home</a></span>
+
+<span><a th:href="@{/createaccount}" th:text="#{user.create}">Create Account</a></span>
+
+
+<span sec:authorize="hasRole('ROLE_USER')">
+<a th:href="@{/createjob}" th:text="#{job.addJob}">
+Add New Job
+</a>
+</span>
+
+<span sec:authorize="hasRole('ROLE_USER')">
+<a th:href="@{/showbid}" th:text="#{bid.showBid}">
+Show Bids
+</a>
+</span>
+
+<span sec:authorize="hasRole('ROLE_ADMIN')">
+<a th:href="@{/AccountInfo}" th:text="#{accounts.info}">
+Account Info
+</a>
+</span>
+
+
+
+<span sec:authorize="!isAuthenticated()">
+<a th:href="@{/login}" id="loginbutton" th:text="#{login.log}">
+Login
+</a>
+</span>
+
+<span sec:authorize="isAuthenticated()">
+
+<a th:href="@{/logout}" id="logoutbutton" th:text="#{logout.logout}">
+Logout
+</a>
+</span>
+
+
+
+
+
+
+
+
+
+</div>
+<div class="userLog" sec:authorize="isAuthenticated()">
+<span>Welcome</span>
+<span sec:authentication="name">UserName here</span>
+</div>
+	<div class="Jobs">
+		<table>
+			<tr>
+			
+					<th>JobID</th>  
+					<th>JobName</th>
+					<th>JobDescription</th>
+					<th>JobCategory</th>
+					<th>Date Time</th>
+					<th>Job Created By</th>
+					<th>Can Bid on Job</th>
+					<th>Make Bid</th>       
+					
+			</tr>
+			
+			<tr th:each="job : ${jobs}">
+			
+			<td th:text="${job.JobId}">ID</td>
+			<td th:text="${job.JobName}">Name</td>
+			<td th:text="${job.JobDescription}">Description</td>
+			<td th:text="${job.JobCategory}">Category</td>
+			<td th:text="${job.Createdatetime}">Date</td>
+			<td th:text="${job.JobUser}">Job Created By</td>
+			<td th:text="${job.CanBid}">Can Bid on Job</td>
+			<td><button type="button"><a th:href=@{/Bid/id(id=${job.JobId})}>Make Bid</a></button></td>
+			
+			
+			</tr>
+			
+		</table>
+	</div>
+	
+</div>
+</body>
+<footer>
+		<span th:text="#{lang.change}"></span>
+		<select id="locales">
+			<option value=""></option>
+			<option value="en" th:text="#{lang.ie}"></option>
+			<option value="ge" th:text="#{lang.ge}"></option>
+		
+		
+		
+		
+		</select>
+
+
+</footer>
+</html>

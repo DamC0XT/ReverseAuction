@@ -1,0 +1,56 @@
+h1{
+	color:red;
+}
+
+table, th, td {
+  border: 2px solid black;
+}
+
+body{
+	
+	margin: 0 auto;
+	padding: 0;
+}
+
+.container{
+	display:flex;
+	flex-direction:column;
+	justify-content:center;
+	align-items:center;
+	
+	border: 1px solid black;
+}
+
+.bidForm{
+	
+	align:center;
+}
+
+
+
+input[type=submit]{
+	
+	color:blue;
+}
+
+
+span{
+	margin-left:20px;
+}
+
+.nav{
+	
+	border: 2px solid black;
+	margin-bottom:15px;
+}
+.nav ol{
+	
+	list-style:none;
+	display:block;
+}
+
+.nav li{
+	display: inline;
+	margin-left:20px;
+	margin-right:20px;
+}

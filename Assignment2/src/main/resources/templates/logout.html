@@ -1,0 +1,107 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+
+<head>
+  <meta charset="utf-8">
+
+  <title>OddJobs.ie</title>
+  <meta name="description" content="OddJobs">
+  
+
+ <link rel="stylesheet" href="/css/styles.css" type="text/css" />
+ 
+ 
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+ <script type="text/javascript">
+ 	$(document).ready(function(){
+ 		
+ 		$("#locales").change(function(){
+ 			
+ 			var selectOption = $("#locales").val();
+ 			
+ 			if(selectOption != ''){
+ 				
+ 				window.location.replace('/?lang=' + selectOption);
+ 				
+ 			}
+ 		});
+ 	});
+ 
+ 
+ </script>
+
+</head>
+
+<body>
+
+<div class = "container">
+	<div class="header">
+  		<h1>Welcome to OddJobs</h1>
+  		<p> Here at OddJobs.ie we offer a great service</p>
+	</div>
+	<div class = "nav">
+
+<span><a th:href="@{/}" th:text="#{home.h}">Home</a></span>
+		<span><a th:href="@{/createaccount}" th:text="#{user.create}">Create Account</a></span>
+
+
+
+<span sec:authorize="hasRole('ROLE_USER')">
+<a th:href="@{/createjob}" th:text="#{job.addJob}">
+Add New Job
+</a>
+</span>
+
+<span sec:authorize="hasRole('ROLE_USER')">
+<a th:href="@{/showbid}" th:text="#{bid.showBid}">
+Show Bids
+</a>
+</span>
+
+<span sec:authorize="hasRole('ROLE_ADMIN')">
+<a th:href="@{/AccountInfo}" th:text="#{accounts.info}">
+Account Info
+</a>
+</span>
+
+
+
+<span sec:authorize="!isAuthenticated()">
+<a th:href="@{/login}" id="loginbutton" th:text="#{login.log}">
+Login
+</a>
+</span>
+
+<span sec:authorize="isAuthenticated()">
+
+<a th:href="@{/logout}" id="logoutbutton" th:text="#{logout.logout}">
+Logout
+</a>
+</span>
+	</div>
+	
+	<div class="logout-page">
+	
+		<h2>You has been logged out</h2>
+		
+				
+		</div>
+	
+
+</div>
+</body>
+<footer>
+		<span th:text="#{lang.change}"></span>
+		<select id="locales">
+			<option value=""></option>
+			<option value="en" th:text="#{lang.ie}"></option>
+			<option value="ge" th:text="#{lang.ge}"></option>
+		
+		
+		
+		
+		</select>
+
+
+</footer>
+</html>

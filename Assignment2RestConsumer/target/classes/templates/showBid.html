@@ -1,0 +1,31 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+
+  </head>
+  
+  <body>
+  
+  <table>
+  	<tr>
+  	<th th:text="#{bid.bid}">Bid</th>
+  	</tr>
+  
+  
+  	<tr th:object="${bid}">
+		<td th:text="*{bidId}">ID</td>
+		<td th:text="*{jobName}">Created By</td>
+		<td th:text="*{userEmail}">JobDescription</td>
+		
+</tr>
+  
+  
+  </table>
+  
+  
+  
+  </body>
+  
+  </html>

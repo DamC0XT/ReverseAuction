@@ -1,0 +1,83 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="utf-8">
+
+  <title>Access Denied</title>
+  <meta name="description" content="OddJobs">
+  
+
+ <link rel="stylesheet" href="/css/styles.css" type="text/css" />
+ 
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+ <script type="text/javascript">
+ 	$(document).ready(function(){
+ 		
+ 		$("#locales").change(function(){
+ 			
+ 			var selectOption = $("#locales").val();
+ 			
+ 			if(selectOption != ''){
+ 				
+ 				window.location.replace('/?lang=' + selectOption);
+ 				
+ 			}
+ 		});
+ 	});
+ 
+ 
+ </script>
+
+</head>
+
+<body>
+
+<div class = "container">
+
+<div class = "nav">
+
+<span><a th:href="@{/}" th:text="#{home.h}">Home</a></span>
+
+
+
+
+
+
+
+
+
+
+
+</div>
+	
+	<div class="error">
+	
+	<h1>You do not have permission to access this page</h1>
+	
+	
+	
+	</div>
+</div>
+<footer>
+
+<a th:href="@{/403} + '?lang=ie'"><i class="flag-icon flag-icon-ie"></i></a>
+
+
+</footer>
+</body>
+<footer>
+		<span th:text="#{lang.change}"></span>
+		<select id="locales">
+			<option value=""></option>
+			<option value="en" th:text="#{lang.ie}"></option>
+			<option value="ge" th:text="#{lang.ge}"></option>
+		
+		
+		
+		
+		</select>
+
+
+</footer>
+</html>
